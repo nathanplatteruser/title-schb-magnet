@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#12110f">
+<title>TITLE · Sch. B / commitment exception QA (demo)</title>
+<meta name="description" content="Phone-first educational demo: load a synthetic title commitment / Schedule B excerpt → exception/gap checklist → unlock $49/file pack. Not legal advice. SoftPro stays system of record — paper QA only.">
+<style>
+:root{
+  --bg:#12110f;--card:#1a1916;--line:#3a3732;--ink:#f4f1ea;--muted:#9a9388;
+  --paper:#f4f1ea;--paper-ink:#12110f;--paper-mute:#6b655c;
+  --accent:#c4a574;--ok:#7cb87a;--warn:#e0b45a;--bad:#e08a7a;
+  --chip:#24221e;--ok-bg:#1a2a1c;--gap-bg:#2a1816;--safe:env(safe-area-inset-bottom,0px);
+  --font-display:Georgia,"Iowan Old Style","Times New Roman",serif;
+  --font-sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  --font-mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;background:var(--bg);color:var(--ink);
+  font:16px/1.45 var(--font-sans);touch-action:manipulation}
+.wrap{max-width:430px;margin:0 auto;min-height:100dvh;
+  padding:12px 12px calc(20px + var(--safe));display:flex;flex-direction:column;gap:10px}
+header.top{padding:8px 4px 2px}
+header.top h1{margin:0;font-size:18px;font-weight:700;font-family:var(--font-display);
+  display:flex;align-items:center;gap:8px;letter-spacing:.01em}
+.mark{width:28px;height:28px;border-radius:4px;background:var(--accent);
+  display:grid;place-items:center;font-size:9px;font-weight:900;color:#12110f;
+  flex-shrink:0;font-family:var(--font-mono);letter-spacing:.04em}
+.sub{color:var(--muted);font-size:13px;margin-top:4px}
+.rules{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.pill{font-size:11px;font-weight:700;padding:6px 10px;border-radius:999px;
+  background:var(--chip);border:1px solid var(--line);color:var(--muted);
+  font-family:var(--font-mono);letter-spacing:.04em;text-transform:uppercase}
+.pill.warn{color:var(--warn);border-color:#5a4518}
+.pill.ok{color:var(--ok);border-color:#1f4d3a}
+.filters{position:sticky;top:0;z-index:5;background:rgba(18,17,15,.94);
+  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);padding:8px 0;
+  display:flex;flex-wrap:wrap;gap:8px}
+.chip{min-height:44px;min-width:44px;padding:10px 12px;border-radius:999px;
+  border:1px solid var(--line);background:var(--chip);color:var(--ink);
+  font-size:13px;font-weight:700;cursor:pointer;touch-action:manipulation}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#12110f}
+.chip:disabled{opacity:.4;cursor:not-allowed}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:none}
+.card.on{display:block}
+.card h2{margin:0 0 6px;font-size:17px;font-family:var(--font-display);font-weight:600}
+.meta{color:var(--muted);font-size:13px;margin-bottom:10px}
+.step{font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:6px;font-family:var(--font-mono)}
+.actions{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.btn{min-height:48px;border-radius:10px;border:1px solid var(--line);background:var(--chip);
+  color:var(--ink);font-size:15px;font-weight:700;padding:12px 14px;cursor:pointer;
+  touch-action:manipulation;text-align:center;text-decoration:none;display:block}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#12110f}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.ghost{background:transparent}
+.letter{width:100%;min-height:220px;border-radius:8px;border:1px solid #c9c2b4;
+  background:var(--paper);color:var(--paper-ink);padding:14px;font-size:13px;line-height:1.55;
+  resize:vertical;font-family:var(--font-mono);box-shadow:inset 0 0 0 1px rgba(18,17,15,.04)}
+.letter::placeholder{color:var(--paper-mute)}
+.check-list{display:flex;flex-direction:column;gap:8px;margin-top:4px}
+.check-item{display:flex;align-items:flex-start;gap:10px;padding:12px;border-radius:10px;
+  background:#24221e;border:1px solid var(--line);font-size:14px}
+.check-item .box{width:22px;height:22px;border-radius:4px;border:2px solid var(--line);
+  flex-shrink:0;margin-top:1px;background:var(--chip)}
+.check-item.on .box{border-color:var(--accent);background:var(--accent)}
+.check-item .label{flex:1;font-weight:600}
+.check-item .cite-hint{display:block;font-size:12px;color:var(--muted);font-weight:500;margin-top:2px}
+.gap-row{padding:12px;border-radius:10px;border:1px solid var(--line);background:#24221e;margin-bottom:8px}
+.gap-row.gap{border-color:#5a2a24;background:var(--gap-bg)}
+.gap-row.pass{border-color:#2a4d32;background:var(--ok-bg)}
+.gap-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.badge{font-size:11px;font-weight:900;letter-spacing:.06em;padding:4px 8px;border-radius:6px;
+  font-family:var(--font-mono)}
+.badge.gap{background:#3a1d10;color:#ffb080}
+.badge.pass{background:#143528;color:var(--ok)}
+.cite{display:inline-block;font-size:11px;font-weight:700;padding:4px 8px;border-radius:6px;
+  background:var(--chip);border:1px solid var(--line);color:var(--muted);margin:4px 4px 0 0;
+  font-family:var(--font-mono)}
+.gap-body{font-size:13px;color:var(--muted);margin-top:8px}
+.summary{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.stat{flex:1;min-width:90px;padding:10px;border-radius:10px;background:#24221e;
+  border:1px solid var(--line);text-align:center}
+.stat b{display:block;font-size:22px;font-weight:900;font-family:var(--font-display)}
+.stat span{font-size:11px;color:var(--muted);font-weight:700;font-family:var(--font-mono);
+  letter-spacing:.06em;text-transform:uppercase}
+.stat.bad b{color:var(--bad)}
+.stat.ok b{color:var(--ok)}
+.lock-wrap{position:relative;margin-top:14px;border-radius:10px;overflow:hidden;
+  border:1px solid var(--line)}
+.lock-preview{padding:14px;filter:blur(5px);user-select:none;pointer-events:none;
+  opacity:.55;min-height:120px;background:#0e0d0b;font-size:12px;color:var(--muted);
+  white-space:pre-wrap;font-family:var(--font-mono)}
+.lock-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:10px;background:rgba(18,17,15,.78);padding:16px;text-align:center}
+.lock-overlay h3{margin:0;font-size:16px;font-family:var(--font-display)}
+.lock-overlay p{margin:0;font-size:13px;color:var(--muted);max-width:280px}
+.hold{margin-top:10px;padding:10px 12px;border-radius:10px;font-size:13px;
+  border:1px dashed var(--line);color:var(--muted);background:#24221e}
+.hold b{color:var(--ink)}
+.banner{padding:10px 12px;border-radius:10px;font-size:12px;font-weight:700;
+  background:#24221e;border:1px solid var(--line);color:var(--warn);text-align:center}
+.sor{padding:10px 12px;border-radius:10px;font-size:12px;
+  background:#1e1c18;border-left:3px solid var(--accent);color:var(--muted);margin-top:8px}
+.sor strong{color:var(--ink)}
+.foot{color:var(--muted);font-size:12px;text-align:center;padding:8px 4px 0}
+.toast{position:fixed;left:50%;bottom:calc(24px + var(--safe));transform:translateX(-50%);
+  background:#24221e;border:1px solid var(--line);color:var(--ink);padding:10px 16px;
+  border-radius:999px;font-size:13px;font-weight:700;opacity:0;pointer-events:none;
+  transition:opacity .2s;z-index:20;max-width:90vw}
+.toast.on{opacity:1}
+.row-btns{display:flex;gap:8px;flex-wrap:wrap}
+.row-btns .btn{flex:1;min-width:140px}
+.price{font-size:12px;color:var(--muted);margin-top:4px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <h1><span class="mark">TL</span> TITLE · Sch. B</h1>
+    <div class="sub">Commitment excerpt → exception checklist → $49/file unlock · paper QA only</div>
+    <div class="rules">
+      <span class="pill warn">Not legal advice</span>
+      <span class="pill">Paper QA</span>
+      <span class="pill ok">SoftPro stays SoR</span>
+    </div>
+  </header>
+
+  <div class="banner" role="note">Not legal advice · educational demo · synthetic data · no underwriter stamp · SoftPro stays system of record</div>
+
+  <div class="filters" role="toolbar" aria-label="Demo steps">
+    <button type="button" class="chip" data-step="load" aria-pressed="true">1 Load</button>
+    <button type="button" class="chip" data-step="checklist" aria-pressed="false" id="chip2" disabled>2 Checklist</button>
+    <button type="button" class="chip" data-step="gaps" aria-pressed="false" id="chip3" disabled>3 Gaps</button>
+    <button type="button" class="chip" data-step="unlock" aria-pressed="false" id="chip4" disabled>4 Unlock</button>
+  </div>
+
+  <!-- STEP 1: Load commitment -->
+  <section class="card on" id="load" data-card="load">
+    <div class="step">Load or paste a commitment excerpt</div>
+    <h2>Schedule B / commitment sample</h2>
+    <p class="meta">Use the synthetic sample, or paste a Sch.&nbsp;B / commitment excerpt. Nothing is uploaded — browser-only. SoftPro / Qualia stay your system of record.</p>
+    <div class="row-btns">
+      <button type="button" class="btn primary" id="loadSample">Load sample commitment</button>
+      <button type="button" class="btn ghost" id="clearText">Clear</button>
+    </div>
+    <textarea class="letter" id="commitment" spellcheck="false" placeholder="Paste Schedule B / commitment excerpt here…" aria-label="Commitment excerpt text"></textarea>
+    <div class="sor"><strong>SoR note.</strong> SoftPro (or your TPS) stays system of record. This magnet is paper/ink exception QA only — not SoftPro integration, not wire movement, not an underwriter stamp.</div>
+    <div class="actions">
+      <button type="button" class="btn primary" id="toChecklist" disabled>Continue to checklist →</button>
+    </div>
+  </section>
+
+  <!-- STEP 2: Exception checklist -->
+  <section class="card" id="checklist" data-card="checklist">
+    <div class="step">What we check against</div>
+    <h2>Exception / gap checklist</h2>
+    <p class="meta">Educational map to common Sch.&nbsp;B / commitment recon fields title ops often eyeball before exam close. Heuristic only — not a title opinion.</p>
+    <div class="check-list" id="checkList" aria-label="Checklist items"></div>
+    <div class="actions">
+      <button type="button" class="btn primary" id="runChecklist">Run exception checklist</button>
+      <button type="button" class="btn ghost" data-goto="load">← Edit excerpt</button>
+    </div>
+  </section>
+
+  <!-- STEP 3: Gaps -->
+  <section class="card" id="gaps" data-card="gaps">
+    <div class="step">GAP / PASS preview</div>
+    <h2>Exception gap report</h2>
+    <p class="meta">Synthetic findings for demo only. Chips are paper-QA prompts — not vesting opinions, not underwriting, not legal advice.</p>
+    <div class="summary" id="gapSummary"></div>
+    <div id="gapList"></div>
+    <div class="actions">
+      <button type="button" class="btn primary" data-goto="unlock">See pack unlock →</button>
+    </div>
+  </section>
+
+  <!-- STEP 4: Unlock -->
+  <section class="card" id="unlock" data-card="unlock">
+    <div class="step">Unlock pack · $49/file</div>
+    <h2>TITLE Sch. B pack</h2>
+    <p class="meta">Preview is watermarked / blurred. Soft unlock via email. No live Stripe on this magnet — SoftPro stays SoR; this is paper QA only.</p>
+
+    <div class="lock-wrap" aria-label="Locked pack preview">
+      <div class="lock-preview" id="fullPreview" aria-hidden="true"></div>
+      <div class="lock-overlay">
+        <h3>Pack locked</h3>
+        <p>Exception recon sheet · gap chips · open-exceptions map · export-ready paper QA layout</p>
+        <a class="btn primary" id="mailtoCta"
+           href="mailto:settleupcollections@polsia.app?subject=TITLE%20Sch.B%20pack%20%2449&body=Hi%20%E2%80%94%20I%20ran%20the%20TITLE%20Sch.%20B%20demo%20and%20want%20to%20unlock%20the%20commitment%20exception%20sample%20pack%20(%2449%2Ffile).%0A%0ACompany%3A%20%0AContact%3A%20%0AFile%20count%20%2F%20notes%3A%20%0A%0ANot%20requesting%20legal%20advice%20or%20underwriter%20stamp.%0ASoftPro%20stays%20our%20system%20of%20record%20%E2%80%94%20paper%20QA%20only.">
+          Unlock pack $49/file
+        </a>
+        <p class="price">$49/file · mailto checkout · no Stripe live on TITLE</p>
+      </div>
+    </div>
+
+    <div class="hold">
+      <b>No Stripe live checkout for TITLE.</b> Soft CTA uses mailto only.
+      SoftPro / your TPS remains system of record — this pack is paper exception QA, not integration.
+    </div>
+
+    <div class="actions">
+      <button type="button" class="btn ghost" data-goto="gaps">← Back to gaps</button>
+      <button type="button" class="btn ghost" id="restart">Restart demo</button>
+    </div>
+  </section>
+
+  <p class="foot">TITLE · TAIL / TITLE · Sassy Tail / Jared · Not legal advice · synthetic data<br>
+  Paper QA overlay only — SoftPro stays SoR · no wire movement · no underwriter stamp · no title opinions</p>
+</div>
+
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function () {
+  const SAMPLE = [
+    '*** SYNTHETIC COMMITMENT / SCHEDULE B EXCERPT — NOT A REAL FILE ***',
+    '',
+    'COMMITMENT FOR TITLE INSURANCE (DEMO)',
+    'File No.: DEMO-2026-0841',
+    'Commitment Date: (blank on this sample)',
+    'Proposed Insured: (see Parties — incomplete)',
+    'Property: Lot 12, Block 4, Maple Creek Subdivision, Sample County, ST',
+    '',
+    'SCHEDULE A (excerpt)',
+    '1. Effective Date: ________',
+    '2. Policy / Amount: Owner\'s · $________ (amount blank)',
+    '3. Title to estate: Fee Simple',
+    '4. Vesting: "John Sample" only — spouse / entity chain not stated',
+    '5. Legal Description: Lot 12, Block 4, Maple Creek Subdivision…',
+    '   (abbrev.; does not match survey call notes below)',
+    '',
+    'SCHEDULE B — PART I (Requirements) — excerpt omitted for demo',
+    '',
+    'SCHEDULE B — PART II (Exceptions)',
+    '1. Taxes and assessments not yet due and payable.',
+    '2. Easements, if any, appearing of record.  ← vague; no instrument / book-page',
+    '3. Rights of parties in possession.',
+    '4. Survey exception: "any facts which an accurate survey would disclose"',
+    '   — blanket survey exception; no ALTA survey referenced.',
+    '5. (open list continues — items 6–11 referenced as "see prior commitment"',
+    '   but prior commitment not attached to this synthetic excerpt)',
+    '',
+    'NOTES (examiner scratch — synthetic)',
+    '- Legal on Sch. A Lot 12/Block 4; survey memo mentions Lot 12 / Block 3 conflict.',
+    '- Commitment date field empty on cover.',
+    '- Parties / vesting: single name only; no marital status / entity authority.',
+    '',
+    '*** END SYNTHETIC DEMO — fake file, fake lot, fake people ***'
+  ].join('\n');
+
+  /* Educational Sch. B / commitment recon checklist — not a title opinion */
+  const CHECKS = [
+    { id: 'easement', label: 'Easement language specificity', cite: 'Sch. B · easements', hint: 'Named instruments / book-page vs blanket “easements of record”' },
+    { id: 'survey', label: 'Survey exception scope', cite: 'Sch. B · survey', hint: 'Blanket survey exception vs survey-referenced exception' },
+    { id: 'vesting', label: 'Parties / vesting completeness', cite: 'Sch. A · vesting', hint: 'Named vested parties, marital/entity status cues' },
+    { id: 'legal', label: 'Legal description fidelity', cite: 'Sch. A · legal', hint: 'Legal matches survey / plat calls without conflict' },
+    { id: 'open_ex', label: 'Open exceptions list completeness', cite: 'Sch. B-II · list', hint: 'Exceptions enumerated; no dangling “see prior” without attach' },
+    { id: 'comm_date', label: 'Commitment date present', cite: 'Cover / Sch. A · date', hint: 'Commitment / effective date filled on face' }
+  ];
+
+  /* Synthetic GAP/PASS mix — paper QA prompts only */
+  const RESULTS = {
+    easement: { status: 'GAP', note: 'Item 2 is blanket “easements, if any, appearing of record” with no instrument cite. Educational flag for specificity — not an underwriting conclusion.' },
+    survey: { status: 'GAP', note: 'Blanket survey exception present; no ALTA/survey reference on this synthetic excerpt.' },
+    vesting: { status: 'GAP', note: 'Vesting shows a single synthetic name only; spouse/entity/authority cues absent. Paper-QA prompt, not a vesting opinion.' },
+    legal: { status: 'GAP', note: 'Sch. A legal (Block 4) conflicts with examiner scratch note (Block 3). Fidelity flag for recon — not a survey opinion.' },
+    open_ex: { status: 'GAP', note: 'Items 6–11 deferred to “see prior commitment” without attachment in this excerpt. Open-list incompleteness flag.' },
+    comm_date: { status: 'GAP', note: 'Commitment / effective date fields blank on the synthetic cover and Sch. A.' }
+  };
+
+  /* If user pastes richer text, flip a couple to PASS via heuristics */
+  function evaluate(text) {
+    const t = text || '';
+    const out = {};
+    Object.keys(RESULTS).forEach(k => { out[k] = Object.assign({}, RESULTS[k]); });
+
+    if (/Book\s*\d+|Reception\s*No|Inst(rument)?\s*No|Doc(ument)?\s*#/i.test(t) && /easement/i.test(t)) {
+      out.easement = { status: 'PASS', note: 'Easement language appears to cite a recorded instrument (heuristic). Still confirm against SoftPro SoR — paper QA only.' };
+    }
+    if (/ALTA|as[- ]shown[- ]on[- ]survey|survey dated/i.test(t)) {
+      out.survey = { status: 'PASS', note: 'Survey-referenced language detected (heuristic). SoftPro stays SoR.' };
+    }
+    if (/and\s+\w+\s+(husband|wife|spouse)|LLC|as joint tenants|tenants in common|trustee/i.test(t)) {
+      out.vesting = { status: 'PASS', note: 'Parties/vesting cues look more complete (heuristic). Not a vesting opinion.' };
+    }
+    if (/Commitment Date:\s*\d|Effective Date:\s*\d|dated\s+\w+\s+\d{1,2},\s*\d{4}/i.test(t)) {
+      out.comm_date = { status: 'PASS', note: 'A commitment/effective date appears present (heuristic).' };
+    }
+    if (!/see prior commitment/i.test(t) && /SCHEDULE B/i.test(t) && (t.match(/^\s*\d+\./gm) || []).length >= 5) {
+      out.open_ex = { status: 'PASS', note: 'Exceptions list looks enumerated without dangling prior-commit deferral (heuristic).' };
+    }
+    if (/Block\s*4/i.test(t) && !/Block\s*3/i.test(t)) {
+      out.legal = { status: 'PASS', note: 'No Block 3/4 conflict detected in pasted text (heuristic). Confirm legal vs survey in SoftPro.' };
+    }
+    return out;
+  }
+
+  const textEl = document.getElementById('commitment');
+  const toChecklist = document.getElementById('toChecklist');
+  const checkList = document.getElementById('checkList');
+  const gapList = document.getElementById('gapList');
+  const gapSummary = document.getElementById('gapSummary');
+  const fullPreview = document.getElementById('fullPreview');
+  const toast = document.getElementById('toast');
+  const chips = {
+    load: document.querySelector('[data-step="load"]'),
+    checklist: document.getElementById('chip2'),
+    gaps: document.getElementById('chip3'),
+    unlock: document.getElementById('chip4')
+  };
+
+  let unlockedSteps = { load: true, checklist: false, gaps: false, unlock: false };
+
+  function showToast(msg) {
+    toast.textContent = msg;
+    toast.classList.add('on');
+    clearTimeout(showToast._t);
+    showToast._t = setTimeout(() => toast.classList.remove('on'), 1800);
+  }
+
+  function go(step) {
+    if (!unlockedSteps[step]) return;
+    document.querySelectorAll('.card').forEach(c => c.classList.toggle('on', c.dataset.card === step));
+    document.querySelectorAll('.filters .chip').forEach(ch => {
+      const s = ch.dataset.step;
+      ch.setAttribute('aria-pressed', s === step ? 'true' : 'false');
+    });
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }
+
+  function syncContinue() {
+    toChecklist.disabled = !textEl.value.trim();
+  }
+
+  function renderChecklist() {
+    checkList.innerHTML = CHECKS.map(c =>
+      `<div class="check-item on" data-id="${c.id}">
+        <div class="box" aria-hidden="true"></div>
+        <div class="label">${c.label}
+          <span class="cite-hint">${c.hint} · ${c.cite}</span>
+        </div>
+      </div>`
+    ).join('');
+  }
+
+  function runReport() {
+    unlockedSteps.gaps = true;
+    unlockedSteps.unlock = true;
+    chips.gaps.disabled = false;
+    chips.unlock.disabled = false;
+
+    const scored = evaluate(textEl.value);
+    let gaps = 0, passes = 0;
+    const rows = CHECKS.map(c => {
+      const r = scored[c.id];
+      if (r.status === 'GAP') gaps++; else passes++;
+      return Object.assign({}, c, r);
+    });
+
+    gapSummary.innerHTML =
+      `<div class="stat bad"><b>${gaps}</b><span>GAPs</span></div>` +
+      `<div class="stat ok"><b>${passes}</b><span>PASS</span></div>` +
+      `<div class="stat"><b>${CHECKS.length}</b><span>Checked</span></div>`;
+
+    gapList.innerHTML = rows.map(r =>
+      `<div class="gap-row ${r.status.toLowerCase()}">
+        <div class="gap-head">
+          <strong>${r.label}</strong>
+          <span class="badge ${r.status.toLowerCase()}">${r.status}</span>
+        </div>
+        <span class="cite">${r.cite}</span>
+        <div class="gap-body">${r.note}</div>
+      </div>`
+    ).join('');
+
+    const lockedBody = [
+      'TITLE · SCH. B / COMMITMENT EXCEPTION PACK (LOCKED)',
+      '====================================================',
+      'File: synthetic-commitment-schb-demo.txt',
+      'Engine: educational exception / gap checklist',
+      'SoR: SoftPro (or your TPS) — this is paper QA only',
+      '',
+      'GAP CHIPS (blurred)',
+      '  · Easement language ............. ' + scored.easement.status,
+      '  · Survey exception .............. ' + scored.survey.status,
+      '  · Parties / vesting ............. ' + scored.vesting.status,
+      '  · Legal description fidelity .... ' + scored.legal.status,
+      '  · Open exceptions list .......... ' + scored.open_ex.status,
+      '  · Commitment date ............... ' + scored.comm_date.status,
+      '',
+      'DISCLAIMER (always)',
+      '  Educational pack only — NOT legal advice.',
+      '  NOT an underwriter stamp / title opinion.',
+      '  NOT SoftPro integration / wire movement.',
+      '',
+      'EXPORT: layout watermarked until unlock · $49/file'
+    ].join('\n');
+    fullPreview.textContent = lockedBody;
+
+    showToast('Checklist complete · ' + gaps + ' gaps');
+    go('gaps');
+  }
+
+  document.getElementById('loadSample').addEventListener('click', () => {
+    textEl.value = SAMPLE;
+    syncContinue();
+    unlockedSteps.checklist = true;
+    chips.checklist.disabled = false;
+    showToast('Sample loaded · synthetic');
+  });
+
+  document.getElementById('clearText').addEventListener('click', () => {
+    textEl.value = '';
+    syncContinue();
+  });
+
+  textEl.addEventListener('input', () => {
+    syncContinue();
+    if (textEl.value.trim()) {
+      unlockedSteps.checklist = true;
+      chips.checklist.disabled = false;
+    }
+  });
+
+  toChecklist.addEventListener('click', () => {
+    unlockedSteps.checklist = true;
+    chips.checklist.disabled = false;
+    renderChecklist();
+    go('checklist');
+  });
+
+  document.getElementById('runChecklist').addEventListener('click', runReport);
+
+  document.getElementById('restart').addEventListener('click', () => {
+    textEl.value = '';
+    syncContinue();
+    unlockedSteps = { load: true, checklist: false, gaps: false, unlock: false };
+    chips.checklist.disabled = true;
+    chips.gaps.disabled = true;
+    chips.unlock.disabled = true;
+    gapList.innerHTML = '';
+    gapSummary.innerHTML = '';
+    go('load');
+    showToast('Demo reset');
+  });
+
+  document.querySelectorAll('[data-goto]').forEach(btn => {
+    btn.addEventListener('click', () => go(btn.dataset.goto));
+  });
+
+  document.querySelectorAll('.filters .chip').forEach(ch => {
+    ch.addEventListener('click', () => go(ch.dataset.step));
+  });
+
+  renderChecklist();
+  syncContinue();
+})();
+</script>
+</body>
+</html>
