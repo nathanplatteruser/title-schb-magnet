@@ -1,53 +1,61 @@
-# TITLE — Sch. B / commitment exception sample pack (demo)
+# TITLE — Sch. B / commitment exception sample pack
 
-Phone-first **static GitHub Pages** magnet for **Sassy Tail / Jared** · Wave A T2 · **TAIL / TITLE**.
+Phone-first **static GitHub Pages** magnet for **Sassy Tail / Jared** · **TAIL / TITLE**.
 
-Load/paste a **synthetic** title commitment / Schedule&nbsp;B excerpt → educational **exception / gap checklist** → unlock CTA **$49/file** via mailto.
+Paper/ink **Demo Playbook** landing: what it is → what it does → honest compare → labeled ROI → breakable demo → dual-mode suite → human owns Send/Submit.
+
+Live: https://nathanplatteruser.github.io/title-schb-magnet/
 
 **Not legal advice. Educational demo. Synthetic data.**  
 **SoftPro stays system of record — this is paper QA only.**  
-**Not SoftPro integration. Not an underwriter stamp. Not a title opinion.**
+**Not SoftPro / Qualia / title-plant replacement. Not an underwriter stamp. Not a title opinion.**  
+**Human owns Send / Submit.**
 
-## What it is
+## Demo Playbook bars (on the public landing)
 
-| Layer | Role |
-|-------|------|
-| TITLE toothpick | Per-file Sch.&nbsp;B / commitment exception QA · $49/file |
-| SoR | SoftPro / Qualia / your TPS remains system of record |
-| Upsell (later) | Agency seat ~$400–1.5k/mo or pilot ~$1–4k Sch.&nbsp;B recon — not this page |
+| # | Bar | Where |
+|---|-----|--------|
+| 1 | What it is — plain | `#what` |
+| 2 | What it does — features / benefits | `#does` |
+| 3 | Compare — honest vs SoftPro / Qualia / plants | `#compare` — overlay only; SoftPro stays SoR |
+| 4 | ROI — every price as ROT with labeled assumptions | `#pricing` / `#roi` — soft filter, not a kill |
+| 5 | Breakable interactive demo | `#demo` — empty paste, nonsense, restart → REFUSE holds |
+| 6 | Suite line — standalone **or** add-to-cart Pilot | `#suite` |
+| 7 | Human owns Send/Submit · not legal advice · no stamp | `#owns` |
 
-Browser-only interactive preview. Nothing is uploaded. **No Stripe live checkout for TITLE** — mailto only.
+## Dual-mode SKUs
+
+| Path | Price | Checkout |
+|------|-------|----------|
+| Standalone TITLE pack | **$49/file** | mailto `settleupcollections@polsia.app` — magnet Stripe **HOLD** |
+| Add-to-cart onto SettleUp Pilot | **$499/mo** | live [Pilot Payment Link](https://buy.stripe.com/dRm00j0GG53F8dVfO17Vm03) |
+
+TITLE remains a paper overlay on either path. It does not replace SoftPro, Qualia, a plant, or Pilot.
+
+## Soft ROI (pricing block only — labeled assumption)
+
+- Pack $49/file: 45 min × $70/hr = $52.50 vs $49 → about **1.05×**. A **2×** claim only if about one extra hour of remake/callback is also avoided on that file.
+- Pilot $499/mo: 8h × $70/hr = $560 vs $499 → about **1.1×**. A **3×** claim only if about **21h/month** are actually saved.
+- Soft filter, not a kill. Do not put multipliers in the hero.
 
 ## Hero tap path (≈30 seconds)
 
-1. Open the Pages URL (or open `index.html` locally).
-2. Tap **Load sample commitment**.
-3. Tap **Continue to checklist →**.
-4. Tap **Run exception checklist**.
-5. Scan **GAP** / **PASS** chips:
-   - easement language
-   - survey exception
-   - parties / vesting
-   - legal description fidelity
-   - open exceptions list
-   - commitment date
-6. Tap **See pack unlock →** → blurred lock + **Unlock pack $49/file** (mailto).
+1. Open the Pages URL (or `index.html` locally).
+2. Tap **Try the breakable demo** or **Load sample commitment**.
+3. Tap **Continue to checklist →** → **Run exception checklist**.
+4. Scan GAP / PASS chips (or hit **Break: empty paste** / **Break: nonsense text** to see REFUSE).
+5. Tap **See pack unlock →** → mailto $49/file, or **Add to Pilot aisle · $499**.
 
-Sticky chips: **1 Load · 2 Checklist · 3 Gaps · 4 Unlock**.
-
-## Soft CTA
-
-- Mailto: `settleupcollections@polsia.app`
-- Subject: `TITLE Sch.B pack $49`
-- Price: **$49/file**
-- Stripe: **none** (explicit hold for TITLE)
+Also: **Restart** wipes the desk.
 
 ## Hard rails
 
 - Not legal advice / not attorney–client
 - Not underwriter stamp / not title opinion / not wire movement
-- SoftPro (or your TPS) stays **system of record** — paper/ink QA overlay only
+- SoftPro (or Qualia / your TPS) stays **system of record** — paper/ink QA overlay only
 - No SoftPro integration in this magnet
+- Human owns Send / Submit
+- Magnet Stripe HOLD on the $49 pack (Pilot is the only live Stripe)
 - COMMON frozen — do not scaffold
 - No LLC / domain inventing
 - Sample uses fake file / fake lot / fake people on purpose
@@ -55,33 +63,20 @@ Sticky chips: **1 Load · 2 Checklist · 3 Gaps · 4 Unlock**.
 ## Files
 
 ```
-title-schb/
-  index.html   # single-file interactive demo (GitHub Pages root)
-  README.md    # this file
-  .nojekyll    # Pages: serve as static (no Jekyll)
+index.html   # Demo Playbook landing + in-page demo
+styles.css   # paper/ink editorial
+demo.js      # sample / heuristics / REFUSE / restart
+README.md
+.nojekyll
 ```
 
 ## Local run
 
 ```bash
-cd /workspace/sassy-tail-overnight/title-schb
 python3 -m http.server 8766
 # open http://127.0.0.1:8766/
 ```
 
-Or open `index.html` directly in a browser.
+## Kill criteria (soft, from overnight rank)
 
-## Publish (parent)
-
-Parent publishes to **`nathanplatteruser/title-schb-magnet`**.  
-This folder is finish-only — **do not push/git from here**.
-
-Expected live URL after Pages:
-
-```
-https://nathanplatteruser.github.io/title-schb-magnet/
-```
-
-## Kill criteria (from overnight rank)
-
-0 paid files **or** demand for wire-move / underwriter stamp → kill or narrow.
+0 paid files **or** demand for wire-move / underwriter stamp → kill or narrow. ROI assumptions on-page are a soft filter, not that kill.
