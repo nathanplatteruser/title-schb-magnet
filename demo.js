@@ -72,7 +72,7 @@
     if (/Book\s*\d+|Reception\s*No|Inst(rument)?\s*No|Doc(ument)?\s*#/i.test(t) && /easement/i.test(t)) {
       out.easement = { status: 'PASS', note: 'Easement language appears to cite a recorded instrument (heuristic). Still confirm against SoftPro SoR — paper QA only.' };
     }
-    if (/ALTA|as[- ]shown[- ]on[- ]survey|survey dated/i.test(t)) {
+    if ((/ALTA/i.test(t) && !/\bno\s+ALTA\b/i.test(t)) || /as[- ]shown[- ]on[- ]survey|survey dated/i.test(t)) {
       out.survey = { status: 'PASS', note: 'Survey-referenced language detected (heuristic). SoftPro stays SoR.' };
     }
     if (/and\s+\w+\s+(husband|wife|spouse)|LLC|as joint tenants|tenants in common|trustee/i.test(t)) {
