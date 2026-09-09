@@ -27,7 +27,7 @@ Live: https://nathanplatteruser.github.io/title-schb-magnet/
 
 | Path | Price | Checkout |
 |------|-------|----------|
-| Standalone TITLE pack | **$49/file** | mailto `settleupcollections@polsia.app` — magnet Stripe **HOLD** |
+| Standalone TITLE pack | **$49/file** | mailto `nathanplatter@gmail.com` — magnet Stripe **HOLD** |
 | Add-to-cart onto SettleUp Pilot | **$499/mo** | live [Pilot Payment Link](https://buy.stripe.com/dRm00j0GG53F8dVfO17Vm03) |
 
 TITLE remains a paper overlay on either path. It does not replace SoftPro, Qualia, a plant, or Pilot.
