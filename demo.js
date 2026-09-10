@@ -1,38 +1,38 @@
 (function () {
   const SAMPLE = [
-    '*** SYNTHETIC COMMITMENT / SCHEDULE B EXCERPT — NOT A REAL FILE ***',
+    '*** SYNTHETIC COMMITMENT / SCHEDULE B EXCERPT - NOT A REAL FILE ***',
     '',
     'COMMITMENT FOR TITLE INSURANCE (DEMO)',
     'File No.: DEMO-2026-0841',
     'Commitment Date: (blank on this sample)',
-    'Proposed Insured: (see Parties — incomplete)',
+    'Proposed Insured: (see Parties - incomplete)',
     'Property: Lot 12, Block 4, Maple Creek Subdivision, Sample County, ST',
     '',
     'SCHEDULE A (excerpt)',
     '1. Effective Date: ________',
     '2. Policy / Amount: Owner\'s · $________ (amount blank)',
     '3. Title to estate: Fee Simple',
-    '4. Vesting: "John Sample" only — spouse / entity chain not stated',
+    '4. Vesting: "John Sample" only - spouse / entity chain not stated',
     '5. Legal Description: Lot 12, Block 4, Maple Creek Subdivision…',
     '   (abbrev.; does not match survey call notes below)',
     '',
-    'SCHEDULE B — PART I (Requirements) — excerpt omitted for demo',
+    'SCHEDULE B - PART I (Requirements) - excerpt omitted for demo',
     '',
-    'SCHEDULE B — PART II (Exceptions)',
+    'SCHEDULE B - PART II (Exceptions)',
     '1. Taxes and assessments not yet due and payable.',
     '2. Easements, if any, appearing of record.  ← vague; no instrument / book-page',
     '3. Rights of parties in possession.',
     '4. Survey exception: "any facts which an accurate survey would disclose"',
-    '   — blanket survey exception; no ALTA survey referenced.',
-    '5. (open list continues — items 6–11 referenced as "see prior commitment"',
+    '   - blanket survey exception; no ALTA survey referenced.',
+    '5. (open list continues - items 6–11 referenced as "see prior commitment"',
     '   but prior commitment not attached to this synthetic excerpt)',
     '',
-    'NOTES (examiner scratch — synthetic)',
+    'NOTES (examiner scratch - synthetic)',
     '- Legal on Sch. A Lot 12/Block 4; survey memo mentions Lot 12 / Block 3 conflict.',
     '- Commitment date field empty on cover.',
     '- Parties / vesting: single name only; no marital status / entity authority.',
     '',
-    '*** END SYNTHETIC DEMO — fake file, fake lot, fake people ***'
+    '*** END SYNTHETIC DEMO - fake file, fake lot, fake people ***'
   ].join('\n');
 
   const NONSENSE = 'asdf qwerty banana pizza lorem 12345 hello world this is not a commitment';
@@ -47,10 +47,10 @@
   ];
 
   const RESULTS = {
-    easement: { status: 'GAP', note: 'Item 2 is blanket “easements, if any, appearing of record” with no instrument cite. Educational flag for specificity — not an underwriting conclusion.' },
+    easement: { status: 'GAP', note: 'Item 2 is blanket “easements, if any, appearing of record” with no instrument cite. Educational flag for specificity - not an underwriting conclusion.' },
     survey: { status: 'GAP', note: 'Blanket survey exception present; no ALTA/survey reference on this synthetic excerpt.' },
     vesting: { status: 'GAP', note: 'Vesting shows a single synthetic name only; spouse/entity/authority cues absent. Paper-QA prompt, not a vesting opinion.' },
-    legal: { status: 'GAP', note: 'Sch. A legal (Block 4) conflicts with examiner scratch note (Block 3). Fidelity flag for recon — not a survey opinion.' },
+    legal: { status: 'GAP', note: 'Sch. A legal (Block 4) conflicts with examiner scratch note (Block 3). Fidelity flag for recon - not a survey opinion.' },
     open_ex: { status: 'GAP', note: 'Items 6–11 deferred to “see prior commitment” without attachment in this excerpt. Open-list incompleteness flag.' },
     comm_date: { status: 'GAP', note: 'Commitment / effective date fields blank on the synthetic cover and Sch. A.' }
   };
@@ -70,7 +70,7 @@
     Object.keys(RESULTS).forEach(function (k) { out[k] = Object.assign({}, RESULTS[k]); });
 
     if (/Book\s*\d+|Reception\s*No|Inst(rument)?\s*No|Doc(ument)?\s*#/i.test(t) && /easement/i.test(t)) {
-      out.easement = { status: 'PASS', note: 'Easement language appears to cite a recorded instrument (heuristic). Still confirm against SoftPro SoR — paper QA only.' };
+      out.easement = { status: 'PASS', note: 'Easement language appears to cite a recorded instrument (heuristic). Still confirm against SoftPro SoR - paper QA only.' };
     }
     if ((/ALTA/i.test(t) && !/\bno\s+ALTA\b/i.test(t)) || /as[- ]shown[- ]on[- ]survey|survey dated/i.test(t)) {
       out.survey = { status: 'PASS', note: 'Survey-referenced language detected (heuristic). SoftPro stays SoR.' };
@@ -140,12 +140,12 @@
       '====================================================',
       'File: synthetic-commitment-schb-demo.txt',
       'Engine: educational exception / gap checklist',
-      'SoR: SoftPro (or your TPS) — this is paper QA only',
+      'SoR: SoftPro (or your TPS) - this is paper QA only',
       'Human owns Send / Submit · not an underwriter stamp',
       '',
       kind === 'ok'
         ? 'GAP CHIPS (blurred)'
-        : 'REFUSE PATH (blurred) — desk held; no invented exceptions'
+        : 'REFUSE PATH (blurred) - desk held; no invented exceptions'
     ];
     if (scored) {
       lines.push(
@@ -160,11 +160,11 @@
     lines.push(
       '',
       'DISCLAIMER (always)',
-      '  Educational pack only — NOT legal advice.',
+      '  Educational pack only - NOT legal advice.',
       '  NOT an underwriter stamp / title opinion.',
       '  NOT SoftPro integration / wire movement.',
       '',
-      'EXPORT: layout watermarked until unlock · $49/file · mailto'
+      'EXPORT: layout watermarked until unlock · book intro or email'
     );
     return lines.join('\n');
   }
@@ -185,7 +185,7 @@
     if (kind === 'empty' || kind === 'nonsense') {
       var title = kind === 'empty' ? 'REFUSE · empty paste' : 'REFUSE · not a commitment';
       var body = kind === 'empty'
-        ? 'Nothing to overlay. The desk holds — it does not invent Schedule B exceptions, vesting, or an underwriter stamp. Load the synthetic sample, or paste a real excerpt. Human still owns Send / Submit.'
+        ? 'Nothing to overlay. The desk holds - it does not invent Schedule B exceptions, vesting, or an underwriter stamp. Load the synthetic sample, or paste a real excerpt. Human still owns Send / Submit.'
         : 'This text does not look like a commitment / Sch. B excerpt. TITLE refuses to hallucinate exception chips. Resilience is the feature. Try the sample, or paste commitment language.';
       refuseBox.innerHTML =
         '<div class="refuse-stamp" role="status"><span>' + title + '</span><p>' + body + '</p></div>';
@@ -262,7 +262,7 @@
     renderChecklist();
     go('checklist');
     if (!textEl.value.trim()) {
-      showToast('Empty paste is allowed — run it to see REFUSE');
+      showToast('Empty paste is allowed - run it to see REFUSE');
     }
   });
 
