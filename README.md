@@ -2,7 +2,7 @@
 
 Phone-first **static GitHub Pages** magnet for **Sassy Tail / Jared** · **TAIL / TITLE**.
 
-Paper/ink **Demo Playbook** landing: what it is → what it does → honest compare → labeled time-back → breakable demo → dual-mode suite → human owns Send/Submit.
+Paper/ink **Demo Playbook** landing: what it is → what it does → honest compare → intro → breakable demo → dual-mode suite → human owns Send/Submit.
 
 Live: https://nathanplatteruser.github.io/title-schb-magnet/
 
@@ -18,25 +18,19 @@ Live: https://nathanplatteruser.github.io/title-schb-magnet/
 | 1 | What it is · plain | `#what` |
 | 2 | What it does · features / benefits | `#does` |
 | 3 | Compare · honest vs SoftPro / Qualia / plants | `#compare` · overlay only; SoftPro stays SoR |
-| 4 | Time-back · labeled hour assumptions, no public dollars | `#pricing` / `#roi` · soft filter, not a kill |
+| 4 | Intro · Book intro or email only | `#pricing` / `#suite` |
 | 5 | Breakable interactive demo | `#demo` · empty paste, nonsense, restart → REFUSE holds |
-| 6 | Suite line · standalone **or** attach onto Pilot after intro | `#suite` |
+| 6 | Suite line · standalone **or** attach onto Pilot | `#suite` |
 | 7 | Human owns Send/Submit · not legal advice · no stamp | `#owns` |
 
-## Dual-mode paths (no public list price)
+## Dual-mode paths
 
-| Path | Access | Next step |
-|------|--------|-----------|
-| Standalone TITLE pack | After intro | [Book intro](https://calendly.com/nathanplatter) or mailto `nathanplatter@gmail.com` · magnet Stripe **HOLD** |
-| Attach onto SettleUp Pilot | After intro | [Book intro](https://calendly.com/nathanplatter) or mailto `nathanplatter@gmail.com` · magnet Stripe **HOLD** |
+| Path | Next step |
+|------|-----------|
+| Standalone TITLE pack | [Book intro](https://calendly.com/nathanplatter) or mailto `nathanplatter@gmail.com` · magnet Stripe **HOLD** |
+| Attach onto SettleUp Pilot | [Book intro](https://calendly.com/nathanplatter) or mailto `nathanplatter@gmail.com` · magnet Stripe **HOLD** |
 
-TITLE remains a paper overlay on either path. It does not replace SoftPro, Qualia, a plant, or Pilot. No invented prices. Public dollars stay off this magnet until after intro.
-
-## Soft time-back (labeled assumption · no public dollars)
-
-- Standalone pack: if one file’s Sch. B eyeball + remake notes takes about **45 minutes**, that is the time check. A **2×** time claim only if about one extra hour of remake/callback is also avoided on that file.
-- Suite path: if the aisle recovers about **8h/month**, that is the time check. A **3×** claim only if about **21h/month** are actually saved.
-- Soft filter, not a kill. Do not put multipliers in the hero. Do not publish dollar conversions or list prices on this magnet.
+TITLE remains a paper overlay on either path. It does not replace SoftPro, Qualia, a plant, or Pilot. This magnet is not an offer sheet. No pack dollars. No Pilot dollars. No Soft ROI that implies what Nathan charges.
 
 ## Hero tap path (≈30 seconds)
 
@@ -56,7 +50,7 @@ Also: **Restart** wipes the desk.
 - No SoftPro integration in this magnet
 - Human owns Send / Submit
 - Magnet Stripe HOLD. No live Stripe on this magnet. No `buy.stripe.com` CTAs
-- No public dollar prices, pack prices, or Pilot list price until after intro
+- Book intro / Calendly / mailto only. No public pack dollars, Pilot dollars, or Soft ROI
 - COMMON frozen. Do not scaffold
 - No LLC / domain inventing
 - Sample uses fake file / fake lot / fake people on purpose
@@ -80,4 +74,4 @@ python3 -m http.server 8766
 
 ## Kill criteria (soft, from overnight rank)
 
-0 paid files **or** demand for wire-move / underwriter stamp → kill or narrow. Time-back assumptions on-page are a soft filter, not that kill.
+0 paid files **or** demand for wire-move / underwriter stamp → kill or narrow.
